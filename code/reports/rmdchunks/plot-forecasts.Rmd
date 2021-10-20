@@ -13,8 +13,8 @@ if (!is.null(params$model)) {
 forecast_dates <- forecast_dates %>%
   select(forecast_date) %>%
   distinct() %>%
-  filter(forecast_date <= params$report_date,
-         forecast_date > params$report_date - params$plot_weeks * 7) %>%
+  filter(forecast_date <= ymd(params$report_date),
+         forecast_date > ymd(params$report_date) - weeks(params$plot_weeks)) %>%
   arrange(desc(forecast_date)) %>%
   pull(forecast_date)
 ```

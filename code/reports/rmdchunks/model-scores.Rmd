@@ -26,7 +26,7 @@ model_scores <- read_csv(here::here("evaluation", "scores.csv")) %>%
 if (params$data_weeks != "All") {
   model_scores <- model_scores %>%
     filter(target_end_date >
-           params$report_date - weeks(as.integer(params$data_weeks)))
+           ymd(params$report_date) - weeks(as.integer(params$data_weeks)))
 }
 ```
 
@@ -50,6 +50,8 @@ if (all(is.na(model_wis))) {
 ```
 
 ```{r compose-scores, echo = FALSE, results = 'asis'}
+library(rmdpartials)
+
 for (variable in names(target_variables)) {
   cat("\n\n###", variable, "{.tabset .tabset-fade}\n\n")
   truth_data <- adjusted_data %>%
