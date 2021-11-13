@@ -20,9 +20,6 @@ options(knitr.duplicate.label = "allow")
 report_date <- today()
 wday(report_date) <- get_hub_config("forecast_week_day")
 
-suppressWarnings(dir.create(here::here("html")))
-suppressWarnings(dir.create(here::here("html", "report-model-files")))
-
 models <- covidHubUtils::get_model_metadata(source = "local_hub_repo",
                                             hub_repo_path = here()) %>%
   filter(!grepl("hub-baseline$", model)) %>%
@@ -37,10 +34,8 @@ render_report <- function(model) {
                                   plot_weeks = 1,
                                   data_weeks = 10),
                     output_format = "md_document",
-                    output_file =
-                      here::here("html",
-                                 paste0("model-report-",
-                                        model, ".md")),
+                    output_file = paste0("model-report-",
+                                        model, ".md"),
 	                  output_options = list(lib_dir = here::here("html", "libs")),
                     envir = new.env())
 }
