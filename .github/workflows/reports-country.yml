@@ -1,8 +1,8 @@
 name: "Create country reports"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 16 * * 1"
+  # schedule:
+  #   - cron: "0 16 * * 1"
   push:
     branches: main
     paths:
