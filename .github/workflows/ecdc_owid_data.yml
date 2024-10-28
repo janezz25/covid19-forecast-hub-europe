@@ -1,8 +1,8 @@
 name: "Get data (ECDC/OWID)"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "7 12 * * *"
+  # schedule:
+  #   - cron: "7 12 * * *"
 
 jobs:
   get_data:
